@@ -21,12 +21,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'kien/ctrlp.vim'
 
-
-" The bundles you install will be listed here
+#Keys and Mappings
 let mapleader=","
+set backspace=indent,eol, start
 
-"set backspace=indent,eol, start
 syntax on
+
+"coloring
 set background=dark
 colo elflord
 
