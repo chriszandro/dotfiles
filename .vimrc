@@ -23,75 +23,67 @@ Bundle 'kien/ctrlp.vim'
 
 #Keys and Mappings
 let mapleader=","
-set backspace=indent,eol, start
-
-syntax on
-
-"coloring
-set background=dark
-colo elflord
 
 filetype plugin indent on
 filetype plugin on
 
-let g:Tex_DefaultTargetFormat='pdf'
+"Editor Theme {
+set background=dark
+colo elflord
 
-" The rest of your config follows here
-"
-map <F2> :! gnuplot % <CR>
-"map <F3> :! ls<CR>
-map <F4> :mksession! /home/hpc/mpet/mpet07/mysession <CR>
+"Line Numbering
+set rnu
+set number
+set modeline
 
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
+"Syntax
+hi clear SpellBad
+syntax on
 
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" " can be called correctly.
-" set shellslash
-"
-" " IMPORTANT: grep will sometimes skip displaying the file name if you
-" " search in a singe file. This will confuse Latex-Suite. Set your grep
-" " program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-"
-" " OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-"
-" " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults
-" to
-" " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-"Code Folding
+}
+
+"Folding {
 set foldmethod=indent   "fold based on indent
 set foldnestmax=5      "deepest fold is 10 levels
 "set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 set fdc=4
 set foldignore=
-set number
 
 " Codebase for 4 space intendation 
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4
 set laststatus=2
+}
 
+"Mappings {
+set backspace=indent,eol,start
 
-"My Special Mappings
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
 nnoremap <leader>py :! python %<cr>
 nnoremap <leader>gu :! gnuplot %<cr>
-
 xnoremap <leader>c <esc>:'<,'>:w !gnuplot<CR>
-"Line Numbering
-set rnu
-set modeline
 
-hi clear SpellBad
+"F-Keys
+map <F2> :! gnuplot % <CR>
+map <F4> :mksession! /home/hpc/mpet/mpet07/mysession <CR>
 
-" Abbreviations
+" Abbreviations {
+
 ab pqf # { <CR> <CR> # } <left><left><left><left><left><left><up><up>
 ab lj [ ] 
 
+" }
+"} END MAPPINGS
+
+"Plugin Management {
+
+"Vim Latex {
+let g:Tex_DefaultTargetFormat='pdf'
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+}
 
  " CTRLP { 
  let g:ctrlp_cmd = 'CtrlP'
@@ -113,3 +105,5 @@ ab lj [ ]
             nnoremap <silent> <leader>gi :Git add -p %<CR>
             nnoremap <silent> <leader>gg :SignifyToggle<CR>
  " } 
+ 
+ " END Plugin Management }
