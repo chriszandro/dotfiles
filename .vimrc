@@ -1,109 +1,134 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
-" New Comment
+" Autoline
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
+
+"Comments
+"
 set nocompatible
-filetype on
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-Bundle 'vim-scripts/gnuplot.vim' 
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdtree'
-Bundle 'lervag/vimtex'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-fugitive'
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'kien/ctrlp.vim'
-
-#Keys and Mappings
+"Important Key Mappings
 let mapleader=","
+"
+"Plugin Loading {
+
+call plug#begin('~/.vim/plugged')
+
+" On-demand loading
+Plug 'lucc/vim-tip'
+Plug 'vim-scripts/LanguageTool'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-latex/vim-latex'
+Plug 'altercation/vim-colors-solarized'
+"Plug 'vim-scripts/phd'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'klen/python-mode'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vimoutliner/vimoutliner'
+"Plug 'vim-airline/vim-airlinec'
+Plug 'itchyny/calendar.vim'
+"Plug 'vim-scripts/vim-auto-save'
+Plug 'rhysd/vim-grammarous'
+Plug 'davidhalter/jedi-vim'
+" Initialize plugin system
+call plug#end()
+
+"}
 
 filetype plugin indent on
-filetype plugin on
+syntax enable
 
-"Editor Theme {
+"Look and Feel{
+
+"General {
 set background=dark
-colo elflord
+colorscheme jellybeans
+"set term=xterm
+"set t_Co=256
 
-"Line Numbering
-set rnu
-set number
-set modeline
+set backspace=indent,eol,start
+set wildmenu
+set tw=79
+"}
 
-"Syntax
-hi clear SpellBad
-syntax on
+"Gui Options {
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+set guifont=DejaVu\ Sans\ Mono\ 15
+"}
+"
 
-}
+"}
 
-"Folding {
-set foldmethod=indent   "fold based on indent
-set foldnestmax=5      "deepest fold is 10 levels
-"set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
-set fdc=4
-set foldignore=
-
-" Codebase for 4 space intendation 
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4
-set laststatus=2
-}
+"Auto Writing Buffers
+autocmd TextChanged, TextChangedI <buffer> silent write
+set autowriteall
 
 "Mappings {
-set backspace=indent,eol,start
 
+"RC Files            {
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>eb :vsplit $HOME/.bashrc<cr>
+"}
 
+"Other files {
+nnoremap <leader>g :vsplit $HOME/kosmos/out_of_mind.otl<cr>
+"}
+
+"Textproduction {
+nnoremap <leader>spe : set spell | set spelllang=de
+"}
+
+"Misc {
+nnoremap <leader>go :Goyo<cr>
 nnoremap <leader>py :! python %<cr>
 nnoremap <leader>gu :! gnuplot %<cr>
-xnoremap <leader>c <esc>:'<,'>:w !gnuplot<CR>
+"}
 
-"F-Keys
-map <F2> :! gnuplot % <CR>
-map <F4> :mksession! /home/hpc/mpet/mpet07/mysession <CR>
-
-" Abbreviations {
-
-ab pqf # { <CR> <CR> # } <left><left><left><left><left><left><up><up>
-ab lj [ ] 
-
-" }
-"} END MAPPINGS
+"}
 
 "Plugin Management {
+
+"Thesaurus {
+set thesaurus=/home/chriz/open.txt
+"}
 
 "Vim Latex {
 let g:Tex_DefaultTargetFormat='pdf'
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
-}
+let g:latex_enabled=1
 
- " CTRLP { 
- let g:ctrlp_cmd = 'CtrlP'
- let g:ctrlp_map = '<c-p>'
- "}
+"For vim-latex. Remapping the mathbf macro
+"imap  <C-i> <Plug>Tex_MathBF
 
- " Fugitive { 
- "
-            nnoremap <silent> <leader>gs :Gstatus<CR>
-            nnoremap <silent> <leader>gd :Gdiff<CR>
-            nnoremap <silent> <leader>gc :Gcommit<CR>
-            nnoremap <silent> <leader>gb :Gblame<CR>
-            nnoremap <silent> <leader>gl :Glog<CR>
-            nnoremap <silent> <leader>gp :Git push<CR>
-            nnoremap <silent> <leader>gr :Gread<CR>
-            nnoremap <silent> <leader>gw :Gwrite<CR>
-            nnoremap <silent> <leader>ge :Gedit<CR>
-            " Mnemonic _i_nteractive
-            nnoremap <silent> <leader>gi :Git add -p %<CR>
-            nnoremap <silent> <leader>gg :SignifyToggle<CR>
- " } 
- 
- " END Plugin Management }
+iabbrev ket \ket{}<Left><Left>
+iabbrev bra \bra{}<Left><Left>
+"}
+
+"LimeLight {
+"This is the ANSI code for a dark grey color for the text out of focus
+let g:limelight_conceal_ctermfg='236'
+"}
+
+"Jedi {
+let g:jedi#rename_command = ''
+let g:jedi#documentation_command =''
+"}
+
+"Pymode {
+let g:pymode_run_bind = '<leader>f'
+let g:pymode_rope=1
+let g:pymode_doc = 1
+"}
+
+"Calendar {
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+"}
+
+
+
