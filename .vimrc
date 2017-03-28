@@ -8,32 +8,41 @@ set nocompatible
 "Important Key Mappings
 let mapleader=","
 "
-"Plugin Loading {
-
-call plug#begin('~/.vim/plugged')
-
 " On-demand loading
 Plug 'lucc/vim-tip'
-Plug 'vim-scripts/LanguageTool'
-Plug 'scrooloose/nerdtree'
+
+"Textproduktion
 Plug 'vim-latex/vim-latex'
-Plug 'altercation/vim-colors-solarized'
-"Plug 'vim-scripts/phd'
+Plug 'vim-scripts/LanguageTool'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'rhysd/vim-grammarous'
+Plug 'subosito/vim-translator'
+Plug 'Ron89/thesaurus_query.vim'
+
+"Programming
+Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'klen/python-mode'
+Plug 'davidhalter/jedi-vim'
+Plug 'tpope/vim-fugitive'
+
+"Workflow
+
+Plug 'wakatime/wakatime'
+
+"Look and Feel
+Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vimoutliner/vimoutliner'
-"Plug 'vim-airline/vim-airlinec'
 Plug 'itchyny/calendar.vim'
-"Plug 'vim-scripts/vim-auto-save'
-Plug 'rhysd/vim-grammarous'
-Plug 'davidhalter/jedi-vim'
+
+"Outsourced
+"Plug 'vim-airline/vim-airlinec'
+
+
 " Initialize plugin system
 call plug#end()
-
-"}
 
 filetype plugin indent on
 syntax enable
@@ -93,7 +102,11 @@ nnoremap <leader>gu :! gnuplot %<cr>
 "Plugin Management {
 
 "Thesaurus {
+"Built In Thesaurus
 set thesaurus=/home/chriz/open.txt
+nnoremap <leader>te :ThesaurusQueryLookupCurrentWord<cr>
+let g:tq_enabled_backends=["woxikon_de", "thesaurus_com","openoffice_en","mthesaur_txt"]
+let g:tq_language=['en', 'de'] 
 "}
 
 "Vim Latex {
