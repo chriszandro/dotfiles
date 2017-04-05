@@ -7,7 +7,12 @@ set nocompatible
 
 "Important Key Mappings
 let mapleader=","
-"
+let LocalLeader="\\"
+
+
+" Specify a directory for plugins 
+call plug#begin('~/.vim/plugged') 
+
 " On-demand loading
 Plug 'lucc/vim-tip'
 
@@ -20,29 +25,60 @@ Plug 'rhysd/vim-grammarous'
 Plug 'subosito/vim-translator'
 Plug 'Ron89/thesaurus_query.vim'
 
+"Plug 'tbabej/taskwiki' Nice tool, maybe in the future
+Plug 'vimwiki/vimwiki' 
+Plug 'dbeniamine/todo.txt-vim'
+Plug 'blindFS/vim-taskwarrior'
+
 "Programming
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'klen/python-mode'
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim' Conflicting with pymode
 Plug 'tpope/vim-fugitive'
+Plug 'fs111/pydoc.vim'
+
 
 "Workflow
-
 Plug 'wakatime/wakatime'
+Plug 'itchyny/calendar.vim'
 
 "Look and Feel
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vimoutliner/vimoutliner'
-Plug 'itchyny/calendar.vim'
-
-"Outsourced
-"Plug 'vim-airline/vim-airlinec'
-
+"Plug 'vim-airline/vim-airline'
 
 " Initialize plugin system
 call plug#end()
+
+"Testenvironment{
+    set splitright                  " Puts new vsplit windows to the right of the current
+    set splitbelow                  " Puts new split windows to the bottom of the current
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+    "Directories
+    set backup                  " Backups are nice ...
+    set autochdir
+
+    if has('persistent_undo')
+        set undofile                " So is persistent undo ...
+        set undolevels=1000         " Maximum number of changes that can be undone
+        set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+    endif
+
+    set ignorecase                  " Case insensitive search
+
+    " set it to the first line when editing a git commit message
+    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    scriptencoding utf-8
+    set history=1000                    " Store a ton of history (default is 20)
+
+"}
+
+
 
 filetype plugin indent on
 syntax enable
@@ -87,13 +123,13 @@ nnoremap <leader>eb :vsplit $HOME/.bashrc<cr>
 nnoremap <leader>g :vsplit $HOME/kosmos/out_of_mind.otl<cr>
 "}
 
+
 "Textproduction {
-nnoremap <leader>spe : set spell | set spelllang=de
+nnoremap <leader>la :GrammarousCheck --lang=de
 "}
 
 "Misc {
 nnoremap <leader>go :Goyo<cr>
-nnoremap <leader>py :! python %<cr>
 nnoremap <leader>gu :! gnuplot %<cr>
 "}
 
@@ -104,6 +140,8 @@ nnoremap <leader>gu :! gnuplot %<cr>
 "Thesaurus {
 "Built In Thesaurus
 set thesaurus=/home/chriz/open.txt
+
+"Thesaurus Plugin
 nnoremap <leader>te :ThesaurusQueryLookupCurrentWord<cr>
 let g:tq_enabled_backends=["woxikon_de", "thesaurus_com","openoffice_en","mthesaur_txt"]
 let g:tq_language=['en', 'de'] 
@@ -132,10 +170,10 @@ let g:jedi#rename_command = ''
 let g:jedi#documentation_command =''
 "}
 
-"Pymode {
+"Pymodz {
 let g:pymode_run_bind = '<leader>f'
-let g:pymode_rope=1
-let g:pymode_doc = 1
+"let g:pymode_rope= 1            
+"let g:pymode_doc = 1
 "}
 
 "Calendar {
@@ -144,4 +182,20 @@ let g:calendar_google_task = 1
 "}
 
 
+" Fugitive {
+if isdirectory(expand("~/.vim/plugged/vim-fugitive/"))
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gr :Gread<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
+    " Mnemonic _i_nteractive
+    nnoremap <silent> <leader>gi :Git add -p %<CR>
+    nnoremap <silent> <leader>gg :SignifyToggle<CR>
+endif
+"}
 
