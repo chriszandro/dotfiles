@@ -27,10 +27,11 @@ Plug 'Ron89/thesaurus_query.vim'
 
 "Plug 'tbabej/taskwiki' Nice tool, maybe in the future
 Plug 'vimwiki/vimwiki' 
-Plug 'dbeniamine/todo.txt-vim'
+"Plug 'dbeniamine/todo.txt-vim'
 Plug 'blindFS/vim-taskwarrior'
 
 "Programming
+Plug 'scrooloose/syntastic>'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'klen/python-mode'
@@ -38,6 +39,8 @@ Plug 'klen/python-mode'
 Plug 'tpope/vim-fugitive'
 Plug 'fs111/pydoc.vim'
 
+"Plotting
+Plug 'vim-scripts/gnuplot.vim'
 
 "Workflow
 Plug 'wakatime/wakatime'
@@ -47,11 +50,10 @@ Plug 'itchyny/calendar.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vimoutliner/vimoutliner'
-"Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " Initialize plugin system
 call plug#end()
-
 "Testenvironment{
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
@@ -116,11 +118,13 @@ set autowriteall
 "RC Files            {
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>eb :vsplit $HOME/.bashrc<cr>
+nnoremap <leader>eb :vsplit ~/dotfiles/.add.bashrc.sh<cr>
+nnoremap <leader>tw :vsplit ~/.taskrc<cr>
 "}
 
 "Other files {
-nnoremap <leader>g :vsplit $HOME/kosmos/out_of_mind.otl<cr>
+nnoremap <leader>g :vsplit ~/kosmos/out_of_mind.otl<cr>
+nnoremap <leader>te :vsplit ~/thesis/thesis_outliner.otl<cr>
 "}
 
 
@@ -170,8 +174,10 @@ let g:jedi#rename_command = ''
 let g:jedi#documentation_command =''
 "}
 
-"Pymodz {
+"Pymode {
 let g:pymode_run_bind = '<leader>f'
+let g:pymode_rope_lookup_project=0
+let g:pymode_rope_regenerate_on_write = 0
 "let g:pymode_rope= 1            
 "let g:pymode_doc = 1
 "}
@@ -199,3 +205,9 @@ if isdirectory(expand("~/.vim/plugged/vim-fugitive/"))
 endif
 "}
 
+"Airline {
+set laststatus=2
+set showmode!
+"}
+"
+"
