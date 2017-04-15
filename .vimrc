@@ -14,7 +14,6 @@ let LocalLeader="\\"
 call plug#begin('~/.vim/plugged') 
 
 " On-demand loading
-Plug 'lucc/vim-tip'
 
 "Textproduktion
 Plug 'vim-latex/vim-latex'
@@ -22,16 +21,11 @@ Plug 'vim-scripts/LanguageTool'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'rhysd/vim-grammarous'
-Plug 'subosito/vim-translator'
 Plug 'Ron89/thesaurus_query.vim'
 
-"Plug 'tbabej/taskwiki' Nice tool, maybe in the future
-Plug 'vimwiki/vimwiki' 
-"Plug 'dbeniamine/todo.txt-vim'
-Plug 'blindFS/vim-taskwarrior'
 
 "Programming
-Plug 'scrooloose/syntastic>'
+Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'klen/python-mode'
@@ -43,13 +37,15 @@ Plug 'fs111/pydoc.vim'
 Plug 'vim-scripts/gnuplot.vim'
 
 "Workflow
-Plug 'wakatime/wakatime'
+Plug 'vimoutliner/vimoutliner'
+Plug 'tbabej/taskwiki'
+Plug 'vimwiki/vimwiki' 
+Plug 'blindFS/vim-taskwarrior'
 Plug 'itchyny/calendar.vim'
 
 "Look and Feel
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
-Plug 'vimoutliner/vimoutliner'
 Plug 'vim-airline/vim-airline'
 
 " Initialize plugin system
@@ -210,4 +206,9 @@ set laststatus=2
 set showmode!
 "}
 "
-"
+"vimwiki {
+let g:vimwiki_list = [{'path': '~/kosmos/wiki/', 'auto_toc': 1}]
+"}
+
+
+
