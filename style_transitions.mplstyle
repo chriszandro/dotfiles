@@ -1,0 +1,27 @@
+font.size : 25
+axes.titlesize : Medium
+axes.labelsize : Large
+legend.fontsize : Large 
+savefig.dpi :  100
+axes.linewidth : 5.0 
+ytick.labelsize : Large 
+ytick.major.pad : 12 
+ytick.major.size : 10
+ytick.minor.size : 8
+ytick.major.width : 2.5
+ytick.minor.width : 3
+xtick.labelsize : Large 
+xtick.major.pad : 12 
+xtick.major.size : 10
+xtick.minor.size : 8
+xtick.major.width : 2.5
+xtick.minor.width : 3
+
+mathtext.fontset : stixsans
+mathtext.default : regular
+
+### 
+lines.linewidth : 2 
+lines.markersize : 20
+
+
