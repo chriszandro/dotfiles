@@ -130,7 +130,7 @@ nnoremap <leader>la :GrammarousCheck --lang=de
 
 "Misc {
 nnoremap <leader>go :Goyo<cr>
-nnoremap <leader>gu :! gnuplot %<cr>
+nnoremap <leader>pl :! gnuplot %<cr>
 "}
 
 "}
