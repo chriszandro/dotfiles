@@ -1,5 +1,5 @@
 " Autoline
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=1 foldmethod=marker:
 
 "Comments
 "
@@ -28,17 +28,22 @@ Plug 'Ron89/thesaurus_query.vim'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'klen/python-mode'
-"Plug 'davidhalter/jedi-vim' Conflicting with pymode
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
 Plug 'tpope/vim-fugitive'
-Plug 'fs111/pydoc.vim'
+Plug 'tpope/vim-surround'
+"Plug 'jiangmiao/auto-pairs'
+
+
+"Plug 'fs111/pydoc.vim'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'klen/python-mode'
 
 "Plotting
 Plug 'vim-scripts/gnuplot.vim'
 
 "Workflow
 Plug 'vimoutliner/vimoutliner'
-Plug 'tbabej/taskwiki'
 Plug 'vimwiki/vimwiki' 
 Plug 'blindFS/vim-taskwarrior'
 Plug 'itchyny/calendar.vim'
@@ -152,7 +157,8 @@ let g:Tex_DefaultTargetFormat='pdf'
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 let g:latex_enabled=1
-
+let g:Tex_GotoError=0   
+let g:Tex_IgnoreLevel=5
 "For vim-latex. Remapping the mathbf macro
 "imap  <C-i> <Plug>Tex_MathBF
 
@@ -171,11 +177,14 @@ let g:jedi#documentation_command =''
 "}
 
 "Pymode {
-let g:pymode_run_bind = '<leader>f'
-let g:pymode_rope_lookup_project=0
-let g:pymode_rope_regenerate_on_write = 0
-"let g:pymode_rope= 1            
+"let g:pymode_run_bind = '<leader>f'
+"let g:pymode_rope_lookup_project=0
+"let g:pymode_rope_regenerate_on_write = 0
+"let g:pymode_rope_project_root = ""
+"let g:pymode_rope_autoimport_modules = ['numpy', 'sympy']
+"let g:pymode_rope_completion = 0
 "let g:pymode_doc = 1
+let g:pymode_rope=0
 "}
 
 "Calendar {
@@ -208,6 +217,8 @@ set showmode!
 "
 "vimwiki {
 let g:vimwiki_list = [{'path': '~/kosmos/wiki/', 'auto_toc': 1}]
+let g:vimwiki_folding = 'list'
+
 "}
 
 

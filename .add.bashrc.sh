@@ -1,9 +1,10 @@
+set -o vi
 export DISPLAY=:0
 export TERM=screen-256color
 alias wjournal='geeknote edit --note "working_journal_2017" --content "WRITE" '
 alias thesis='vim /home/chriz/PHD/thesis_draft/main.tex'
 PATH=$PATH:"/mnt/c/Users/chriz/Dropbox/todo/todo.txt_cli-2.9"
-
+alias cv='xelatex ~/kosmos/bewerbung/Awesome-CV/examples/cv.tex'
 
 function extract {
  if [ -z "$1" ]; then
@@ -40,7 +41,6 @@ function extract {
     done
 fi
 }
-
 
 PS1='\u@\h:\w> '
 export PS1
