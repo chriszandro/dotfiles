@@ -54,6 +54,10 @@ Plug 'vim-airline/vim-airline'
 
 " Initialize plugin system
 call plug#end()
+
+
+au BufRead,BufNewFile *.plt set filetype=gnuplot
+
 "Testenvironment{
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
